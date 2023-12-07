@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.w3c.dom.Text
 
@@ -18,6 +19,7 @@ class DetailActivity:AppCompatActivity() {
     private lateinit var description:String
     private lateinit var price:String
     private var detailsImage :Int=0
+    private var position:Int=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +43,8 @@ class DetailActivity:AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.deleteItem->{
-
+val confirmationDialog=ConfirmationDialog(this@DetailActivity)
+                confirmationDialog.show()
             }
             R.id.editItem->{
                 val intent=Intent(this@DetailActivity,EditActivity::class.java)
@@ -49,7 +52,7 @@ class DetailActivity:AppCompatActivity() {
                 intent.putExtra("P",price)
                 intent.putExtra("D",description)
                 intent.putExtra("S",detailsImage)
-                startActivity(intent)
+                startActivityForResult(intent,1)
             }
         }
         return super.onOptionsItemSelected(item)
@@ -63,5 +66,19 @@ class DetailActivity:AppCompatActivity() {
         textDescription.setText(description)
         textPrice.setText(price)
         image.setImageResource(detailsImage)
+
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        intent.putExtra("C",data?.getStringExtra("C"))
+        intent.putExtra("P",data?.getStringExtra("P"))
+        intent.putExtra("D",data?.getStringExtra("D"))
+        intent.putExtra("I",position)
+        intent.putExtra("S",data?.getIntExtra("S",R.id.polo))
+Toast.makeText(this,city,Toast.LENGTH_SHORT).show()
+        setResult(1, intent)
+        finish()
+    }
+
 }

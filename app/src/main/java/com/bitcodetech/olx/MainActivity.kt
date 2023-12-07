@@ -55,7 +55,8 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("P",posts[position].price)
             intent.putExtra("D",posts[position].description)
             intent.putExtra("S",posts[position].selectedImage)
-            startActivity(intent)
+            intent.putExtra("I",position)
+            startActivityForResult(intent,1)
 Toast.makeText(this@MainActivity,"listener",Toast.LENGTH_SHORT).show()
         }
     }
@@ -65,11 +66,11 @@ Toast.makeText(this@MainActivity,"listener",Toast.LENGTH_SHORT).show()
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-
 if (resultCode==1) {
     city = data?.getStringExtra("C").toString()
     description = data?.getStringExtra("D").toString()
     price = data?.getStringExtra("P").toString()
+    Toast.makeText(this,city,Toast.LENGTH_SHORT).show()
     selectedImage = data?.getIntExtra("S", R.id.polo)!!.toInt()
 
         posts.add(

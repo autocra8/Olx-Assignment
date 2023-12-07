@@ -29,8 +29,6 @@ class PostsAdapter(
        var price: TextView
        var city:TextView
        var description:TextView
-       //val postView:View
-
 
         init {
 

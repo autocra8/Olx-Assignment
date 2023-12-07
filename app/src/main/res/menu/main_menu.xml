@@ -4,9 +4,8 @@
 
     <item
         android:id="@+id/addItem"
-        android:icon="@drawable/baseline_add_24"
+        android:icon="@drawable/addsymbol"
         android:title="Add Product"
-        android:iconTint="@color/black"
         app:showAsAction="ifRoom"/>
 
 </menu>

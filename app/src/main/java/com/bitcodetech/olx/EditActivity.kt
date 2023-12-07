@@ -52,13 +52,13 @@ class EditActivity:AppCompatActivity() {
 
      val intent=Intent(this@EditActivity,MainActivity::class.java)
 
-     intent.putExtra("C",city)
-     intent.putExtra("P",price)
-     intent.putExtra("D",description)
+     intent.putExtra("C",edtCity.text.toString())
+     intent.putExtra("P",edtPrice.text.toString())
+     intent.putExtra("D",edtDescription.text.toString())
      intent.putExtra("S",selectedImage)
 
      setResult(1, intent)
-     startActivityForResult(intent,1)
+     finish()
 
  }
         imgBullet.setOnClickListener {
